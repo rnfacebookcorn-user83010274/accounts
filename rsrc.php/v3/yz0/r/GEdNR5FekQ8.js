@@ -1,0 +1,3 @@
+if (self.CavalryLogger) { CavalryLogger.start_js(["ZU1ro"]); }
+
+__d("BanzaiStream",["Promise","Banzai","BanzaiStreamPayloads"],(function a(b,c,d,e,f,g,h,i,j){"use strict";var k=4294967296,l="banzai_stream_route",m=250*1e3,n={post:function o(p,q){var r=JSON.stringify({stream_route:p,payload:q});if(r.length<m){i.post(p,q);return}var s=Math.floor(Math.random()*k)+"_"+Date.now();j.addPayload(s,{route:p,payload:q});var t=[],u=Math.ceil(r.length/m);for(var v=0;v<u;v++)t.push(r.substr(v*m,m));t.reduce(function(w,x,v){var y={id:s,index:v,count:u,chunk_data:x};return w.then(function(){return new h(function(z,A){return i.post(l,y,{callback:z})})})},h.resolve()).done(function(){j.removePayload(s)})}};f.exports=n}),null);
